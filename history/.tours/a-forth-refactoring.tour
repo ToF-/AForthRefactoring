@@ -129,7 +129,7 @@
           "character": 4
         }
       },
-      "description": "Cleaning the code and changing its layout make things clearer. Ideally we want to see only the \"domain logic\" steps of calculating a bowling score, and ignore the stack manipulations."
+      "description": "Cleaning the code and changing its layout make things clearer. Ideally we want to see only the \"domain logic\" steps of calculating a bowling score, and leave the stack manipulation words \"in the background\"."
     },
     {
       "file": "8/bowling.fs",
