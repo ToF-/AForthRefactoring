@@ -8,6 +8,8 @@
   + 10 = 
   IF 1 ELSE 0 THEN ;
 
+: ADD-THROWS ( score, throw1, throw2 -- score )
+  + + ;
 \ given the current bonus switch and score, and two rolls,
 \ calculate the current score. All the data is on the stack
 
@@ -18,8 +20,7 @@
   COLLECT-BONUS  \ score
   2R@            \ score', throw1, throw2  
   CALC-BONUS     \ score', switch
-  R> R>          \ score', switch, throw1, throw2
-  +              \ score', switch, frame-score
-  ROT            \ switch, frame-score, score'
-  +              \ switch, score'  
+  SWAP           \ switch, score'
+  R> R>          \ switch, score', throw1, throw2
+  ADD-THROWS     \ switch, score'
   ;
