@@ -1,5 +1,8 @@
 : RESET-SCORE ( -- switch, score )
   0 0 ;
+
+\ given the current bonus switch and score, and two rolls,
+\ calculate the current score. All the data is on the stack
 : CURRENT-SCORE ( switch, score, throw1, throw2 -- switch, score ) 
   >R >R          \ switch, score             - R throw2, throw1
   SWAP           \ score, switch
