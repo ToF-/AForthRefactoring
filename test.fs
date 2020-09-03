@@ -17,7 +17,7 @@ RESET-SCORE
 T{ 
 ." Spare frame counts the next frame score twice " CR
 RESET-SCORE
-6 4 CURRENT-SCORE 10 CHECK  
+6 4 CURRENT-SCORE 10 ?S DUP 1 ?S
 3 2 CURRENT-SCORE 18 ?S 0 ?S
 }T
  

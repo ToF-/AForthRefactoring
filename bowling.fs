@@ -1,26 +1,29 @@
-: RESET-SCORE ( -- switch, score )
-  0 0 ;
+VARIABLE SCORE
 
-: COLLECT-BONUS ( score,switch,throw1 -- score )
-  * + ;
+: RESET-SCORE ( -- switch )
+  0  
+  0 SCORE ! ;
+
+: COLLECT-BONUS ( switch,throw1 -- )
+  * SCORE +! ; 
 
 : CALC-BONUS ( throw1,throw2 -- switch )
   + 10 = 
   IF 1 ELSE 0 THEN ;
 
-: ADD-THROWS ( score, throw1, throw2 -- score )
-  + + ;
-\ given the current bonus switch and score, and two rolls,
-\ calculate the current score. All the data is on the stack
+: ADD-THROWS ( score, throw1, throw2 -- )
+  + SCORE +! ;
 
-: CURRENT-SCORE ( switch, score, throw1, throw2 -- switch, score ) 
-  >R >R          \ switch, score             - R throw2, throw1
-  SWAP           \ score, switch
-  R@             \ score, switch, throw1   - R throw2, throw1
-  COLLECT-BONUS  \ score
-  2R@            \ score', throw1, throw2  
-  CALC-BONUS     \ score', switch
-  SWAP           \ switch, score'
-  R> R>          \ switch, score', throw1, throw2
-  ADD-THROWS     \ switch, score'
+\ given the current bonus switch and score, and two rolls,
+\ calculate the current score. Use a score variable
+
+: CURRENT-SCORE ( switch, throw1, throw2 -- switch, score ) 
+  >R >R          \ switch,            - R throw2, throw1
+  R@             \  switch, throw1   - R throw2, throw1
+  COLLECT-BONUS  \ 
+  2R@            \ throw1, throw2  
+  CALC-BONUS     \ switch
+  R> R>          \ switch, throw1, throw2
+  ADD-THROWS     \ switch
+  SCORE @
   ;
