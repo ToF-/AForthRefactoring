@@ -3,7 +3,7 @@
   "steps": [
     {
       "title": "Introduction",
-      "description": "The following is refactoring sequence of some Forth code that Tom Ayers and I wrote recently, as part of a *bowling score kata* pair programming session.\n\n"
+      "description": "The following is refactoring sequence of some Forth code that Tom Ayerst and I wrote recently, as part of a *bowling score kata* pair programming session.\n\n"
     },
     {
       "file": "1/bowling.fs",
