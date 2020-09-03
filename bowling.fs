@@ -17,10 +17,8 @@ VARIABLE SCORE
 \ given the current bonus switch and score, and two rolls,
 \ calculate the current score. Use a score variable
 
-: CURRENT-SCORE ( switch, throw1, throw2 -- switch, score ) 
+: CALC-FRAME-SCORE ( switch, throw1, throw2 -- switch ) 
   SWAP 2>R          \ save throws, throw2 first, on return stack
   R@ COLLECT-BONUS  
   2R@ CALC-BONUS    
-  2R> ADD-THROWS     
-  SCORE @
-  ;
+  2R> ADD-THROWS ;

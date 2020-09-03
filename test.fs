@@ -11,14 +11,14 @@ PAGE    \ Clears the screen
 T{
 ." Average frame counts both throws for scoring " CR
 RESET-SCORE 
-3 5 CURRENT-SCORE 8 ?S 0 ?S 
+3 5 CALC-FRAME-SCORE SCORE @ 8 ?S 0 ?S 
 }T
 
 T{ 
 ." Spare frame counts the next frame score twice " CR
 RESET-SCORE
-6 4 CURRENT-SCORE 10 ?S DUP 1 ?S
-3 2 CURRENT-SCORE 18 ?S 0 ?S
+6 4 CALC-FRAME-SCORE SCORE @ 10 ?S DUP 1 ?S
+3 2 CALC-FRAME-SCORE SCORE @ 18 ?S 0 ?S
 }T
  
 BYE
