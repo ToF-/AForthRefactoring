@@ -6,6 +6,20 @@
       "description": "The following is refactoring sequence of some Forth code that Tom Ayerst and I wrote recently, as part of a *bowling score kata* pair programming session.\n\n"
     },
     {
+      "file": "1/test.fs",
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 1
+        },
+        "end": {
+          "line": 22,
+          "character": 3
+        }
+      },
+      "description": "These are the tests for our program so far. Each test puts initial values on the stack with `RESET-SCORE`, then puts some throws and call `CURRENT-SCORE`, checking that the expected results are on the stack."
+    },
+    {
       "file": "1/bowling.fs",
       "selection": {
         "start": {
@@ -132,6 +146,20 @@
       "description": "Cleaning the code and changing its layout make things clearer. Ideally we want to see only the \"domain logic\" steps of calculating a bowling score, and leave the stack manipulation words \"in the background\"."
     },
     {
+      "file": "9/test.fs",
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 1
+        },
+        "end": {
+          "line": 22,
+          "character": 3
+        }
+      },
+      "description": "We change our tests so that they use the `SCORE` variable to check the score instead of expecting the value on the stack."
+    },
+    {
       "file": "8/bowling.fs",
       "selection": {
         "start": {
@@ -143,7 +171,7 @@
           "character": 19
         }
       },
-      "description": "The definition is in a better shape, but is still complicated. We use the return stack as a way to temporarily discard some parameters. It is a Forth code smell. Instead of using two stacks, we should simplify the use of the main (data) stack."
+      "description": "The definition is row in a better shape, but it is still complicated. We use the return stack as a way to temporarily discard some parameters. It is a Forth code smell. Instead of using two stacks, we should simplify the use of the main (data) stack."
     },
     {
       "file": "9/bowling.fs",
