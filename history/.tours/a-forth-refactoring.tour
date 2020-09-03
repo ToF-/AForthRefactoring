@@ -1,0 +1,163 @@
+{
+  "title": "A Forth Refactoring",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "The following is refactoring sequence of some Forth code that Tom Ayers and I wrote recently, as part of a *bowling score kata* pair programming session.\n\n"
+    },
+    {
+      "file": "1/bowling.fs",
+      "selection": {
+        "start": {
+          "line": 3,
+          "character": 1
+        },
+        "end": {
+          "line": 17,
+          "character": 4
+        }
+      },
+      "description": "This word calculates the current score given a bonus switch (0 or 1), the previous score, and the two throws the player just rolled.\nWhile being pretty complicated, its tasks amounts to \n- collect the bonus possibly earned on previous frame,\n- calculate the new bonus in case the two throws constitute a *spare*\n- add the frame score to the global score\nIt does a lot of juggling on the stack, uses the return stack, and is difficult to undersand."
+    },
+    {
+      "file": "2/bowling.fs",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 19,
+          "character": 4
+        }
+      },
+      "description": "After making sure the tests pass, we get rid of a commented instruction, and add some explanation before the definition."
+    },
+    {
+      "file": "3/bowling.fs",
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 6,
+          "character": 1
+        }
+      },
+      "description": "Our first simplification step is to extract a specific word to collect the bonus previously earned. If the bonus *swich* is 1, multiplying it by the first throw will create the bonus score."
+    },
+    {
+      "file": "4/bowling.fs",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 1
+        },
+        "end": {
+          "line": 10,
+          "character": 1
+        }
+      },
+      "description": "Then we extract another word to calculate the bonus for the next frame. At this point the program manages the spare only. If the player knocked down all the pins, leave a 1 on the stack, else leave a 0."
+    },
+    {
+      "file": "5/bowling.fs",
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 1
+        },
+        "end": {
+          "line": 12,
+          "character": 8
+        }
+      },
+      "description": "The last *extract word* refactoring is merely adding the throws points to the score."
+    },
+    {
+      "file": "6/bowling.fs",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 9,
+          "character": 1
+        }
+      },
+      "description": "One reason why the code is so complicated in the first place is that we sought to use the stack as our storage area for the whole program, which led us to a word using 4 parameters. Using a variable for the global score will lead us to a simpler code. Thus `COLLEC-BONUS` updates the `SCORE` variable and doesn't return anything anymore."
+    },
+    {
+      "file": "6/bowling.fs",
+      "selection": {
+        "start": {
+          "line": 14,
+          "character": 1
+        },
+        "end": {
+          "line": 16,
+          "character": 1
+        }
+      },
+      "description": "The same change is applied to `ADD-THROWS`."
+    },
+    {
+      "file": "6/bowling.fs",
+      "selection": {
+        "start": {
+          "line": 20,
+          "character": 1
+        },
+        "end": {
+          "line": 29,
+          "character": 4
+        }
+      },
+      "description": "Removing the score from the stack allows for less juggling, but we have to return it at the end of the word since our tests are expecting a score value on the stack."
+    },
+    {
+      "file": "7/bowling.fs",
+      "selection": {
+        "start": {
+          "line": 20,
+          "character": 1
+        },
+        "end": {
+          "line": 26,
+          "character": 4
+        }
+      },
+      "description": "Cleaning the code and changing its layout make things clearer. Ideally we want to see only the \"domain logic\" steps of calculating a bowling score, and ignore the stack manipulations."
+    },
+    {
+      "file": "8/bowling.fs",
+      "selection": {
+        "start": {
+          "line": 20,
+          "character": 1
+        },
+        "end": {
+          "line": 24,
+          "character": 19
+        }
+      },
+      "description": "The definition is in a better shape, but is still complicated. We use the return stack as a way to temporarily discard some parameters. It is a Forth code smell. Instead of using two stacks, we should simplify the use of the main (data) stack."
+    },
+    {
+      "file": "9/bowling.fs",
+      "selection": {
+        "start": {
+          "line": 20,
+          "character": 1
+        },
+        "end": {
+          "line": 23,
+          "character": 20
+        }
+      },
+      "description": "With ondy 3 parameters on the stack, we don't need to use the return stack. The stack manipulation words here do an auxiliary job of arranging the parameters for a correct exectution of the three steps. \nWe changed a 18 words definition into a 9 words definition, we have a simpler code, where the domain logic eleements are visible. Refactoring done!"
+    }
+  ]
+}
