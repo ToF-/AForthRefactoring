@@ -18,12 +18,9 @@ VARIABLE SCORE
 \ calculate the current score. Use a score variable
 
 : CURRENT-SCORE ( switch, throw1, throw2 -- switch, score ) 
-  >R >R          \ switch,            - R throw2, throw1
-  R@             \  switch, throw1   - R throw2, throw1
-  COLLECT-BONUS  \ 
-  2R@            \ throw1, throw2  
-  CALC-BONUS     \ switch
-  R> R>          \ switch, throw1, throw2
-  ADD-THROWS     \ switch
+  SWAP 2>R          \ save throws, throw2 first, on return stack
+  R@ COLLECT-BONUS  
+  2R@ CALC-BONUS    
+  2R> ADD-THROWS     
   SCORE @
   ;
