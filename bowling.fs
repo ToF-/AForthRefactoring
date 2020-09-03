@@ -18,7 +18,6 @@ VARIABLE SCORE
 \ calculate the current score. Use a score variable
 
 : CALC-FRAME-SCORE ( switch, throw1, throw2 -- switch ) 
-  SWAP 2>R          \ save throws, throw2 first, on return stack
-  R@ COLLECT-BONUS  
-  2R@ CALC-BONUS    
-  2R> ADD-THROWS ;
+  -ROT 2DUP COLLECT-BONUS 
+  NIP  2DUP CALC-BONUS
+  -ROT ADD-THROWS ;
