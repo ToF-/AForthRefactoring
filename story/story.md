@@ -204,4 +204,19 @@ The definition is now in a better shape, but it is still complicated. The defini
 With ondy 3 parameters on the stack, we don't need to use the return stack. The stack manipulation words here do an auxiliary job of arranging the parameters for a correct execution of the 3 steps. Compare this definition with the one we started with: it is thinner (it uses 9 words instead of 18), simpler as we don't use a secondary stack anymore, and clearer as the domain logic elements are more visible. 
 
 Refactoring done!
+## Forth and Refactoring Heuristics
+This session illustrates several refactoring heuristics. The one in particular that strikes me as very effective is the ability to make small incremental changes to the code while keeping the bar green. Faced with the code in its initial state, a more brutal pair than us would have maybe decided to make many changes at once. But Forth programs are very fragile things: the lack of any type error or memory error checking (or any error checking for that matter) in the language makes it easy to move fast from a safe place to a crash. Here, instead of trying to fix everything in one go, we did one thing at a time, checking our tests at every step. (And that way still, the tests broke many times). I compare this approach to "crossing the river by feeling the stones." For example, when we decided to use a variable for the score instead of keeping its value on the stack, we added that variable in a way that was not breaking the tests, and for a moment, the definition was handling the value both on the stack and in the variable.
+
+Programs written in Forth are a very interesting source of insight about refactoring. As a matter of fact, Leo Brodie's 1984 book *Thinking Forth* has a whole chapter on "Factoring" which describes a set of techniques and a design approach that bears fascinating resemblance with what we know as refactoring. 
+
+> several of the criteria for factoring Forth definitions:
+> 1. Limiting the size of definitions 
+> 2. Limiting repetition of code
+> 3. Nameability
+> 4. Information hiding
+> 5. Simplifying the command interface
+
+I think that Forth as a language is worth learning if only to get to the quintessential design philosophy that is everywhere in this book.
+
+
 
