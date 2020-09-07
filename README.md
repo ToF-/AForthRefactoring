@@ -1,4 +1,6 @@
-What follows is a refactoring sequence of some Forth code that Tom Ayerst and I wrote recently, as part of a *bowling score kata* pair programming session.
+# Crossing the River by Feeling the Stones
+
+sWhat follows is a refactoring sequence of some Forth code that Tom Ayerst and I wrote recently, as part of a *bowling score kata* pair programming session.
 
 ## Initial State
 These are the tests for our program so far. Each test puts initial values on the stack with `RESET-SCORE`, then puts some throws and call `CURRENT-SCORE`, checking that the expected results are on the stack.
